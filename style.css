@@ -1,0 +1,179 @@
+/* ── Reset & base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a2e;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #eee;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 24px;
+  background: #16213e;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  width: min(380px, 95vw);
+}
+
+h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: #e94560;
+}
+
+/* ── Mode selector ── */
+.mode-selector {
+  display: flex;
+  gap: 8px;
+  background: #0f3460;
+  border-radius: 50px;
+  padding: 4px;
+}
+
+.mode-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 50px;
+  background: transparent;
+  color: #aaa;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+
+.mode-btn.active {
+  background: #e94560;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ── Status ── */
+.status {
+  font-size: 1.1rem;
+  min-height: 1.6em;
+  text-align: center;
+  color: #ccc;
+  transition: color 0.2s;
+}
+
+.status.winner {
+  color: #e94560;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* ── Board ── */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.cell {
+  aspect-ratio: 1;
+  background: #0f3460;
+  border: none;
+  border-radius: 12px;
+  font-size: clamp(2rem, 8vw, 3rem);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell:hover:not(:disabled) {
+  background: #1a4a8a;
+  transform: scale(1.04);
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.cell.x {
+  color: #e94560;
+}
+
+.cell.o {
+  color: #0f9b8e;
+}
+
+.cell.win {
+  background: #e94560;
+  color: #fff !important;
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ── Scoreboard ── */
+.scoreboard {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.score-box {
+  flex: 1;
+  background: #0f3460;
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.score-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+
+.score-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #e94560;
+}
+
+.draws .score-value {
+  color: #f5a623;
+}
+
+/* ── Restart button ── */
+.restart-btn {
+  padding: 10px 32px;
+  background: #e94560;
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.restart-btn:hover {
+  background: #c73652;
+  transform: scale(1.03);
+}
